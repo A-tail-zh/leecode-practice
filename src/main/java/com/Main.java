@@ -1,56 +1,43 @@
 package com;
 
-import com.leetcode.daily.DailyUtils;
+import java.time.LocalDate;
 
 /**
- * LeetCode 算法练习项目
- * 
- * 项目结构说明：
- * - daily/     : 每日一题专用目录（推荐）
- *              格式：daily/yyyy-MM/DayXX_题目名.java
- *              例如：daily/2026-03/Day08_TwoSum.java
- * - array/     : 数组相关题目
- * - list/      : 链表相关题目
- * - tree/      : 树相关题目
- * - dynamic/   : 动态规划相关题目
- * - graph/     : 图相关题目
- * - sort/      : 排序算法相关题目
- * - search/    : 搜索算法相关题目
- * - string/    : 字符串相关题目
- * - math/      : 数学相关题目
- * 
- * 使用建议：
- * 1. 每日一题优先放在 daily 包下，按月份组织，文件命名：Day + 日期 + _ + 驼峰题目名
- *    示例：daily/2026-03/Day08_TwoSum.java
- * 2. 专项练习按类型放在对应包下
- * 3. 每个类都包含完整的解题思路和注释
+ * LeetCode 算法练习项目主入口
+ * * 项目结构说明：
+ * - daily/     : 每日一题专用目录
+ * 格式：daily/y2026/m03/DayXX_题目名.java
  */
 public class Main {
     public static void main(String[] args) {
         System.out.println("========================================");
-        System.out.println("欢迎使用 LeetCode 算法练习项目！");
+        System.out.println("   欢迎使用 LeetCode 算法练习项目！");
         System.out.println("========================================");
         System.out.println();
-        System.out.println("📁 项目已创建以下分类包：");
-        System.out.println("  • daily     - 每日一题");
-        System.out.println("              格式：yyyy-MM/DayXX_题目名.java");
-        System.out.println("              示例：2026-03/Day08_TwoSum.java");
-        System.out.println("  • array     - 数组相关");
-        System.out.println("  • list      - 链表相关");
-        System.out.println("  • tree      - 树相关");
-        System.out.println("  • dynamic   - 动态规划");
-        System.out.println("  • graph     - 图相关");
-        System.out.println("  • sort      - 排序算法");
-        System.out.println("  • search    - 搜索算法");
-        System.out.println("  • string    - 字符串");
-        System.out.println("  • math      - 数学相关");
+        System.out.println("📁 核心目录结构：");
+        System.out.println("  • daily      - 每日一题（自动生成）");
+        System.out.println("               路径规范：y年份.m月份.Day日期_题目.java");
+        System.out.println("  • array/list  - 专项练习");
         System.out.println();
-        System.out.println("💡 今日信息：");
-        System.out.println("  当前月份：" + DailyUtils.getCurrentYearMonth());
-        System.out.println("  第几天：" + DailyUtils.getDayOfMonth());
-        System.out.println("  示例文件名：" + DailyUtils.generateFileName("ProblemName"));
+
+        // 1. 获取当前日期信息
+        LocalDate now = LocalDate.now();
+        String yearPart = "y" + now.getYear();
+        String monthPart = "m" + String.format("%02d", now.getMonthValue());
+        String dayPrefix = String.format("Day%02d", now.getDayOfMonth());
+
+        // 2. 构造展示信息
+        String packageName = "com.leetcode.daily." + yearPart + "." + monthPart;
+        String folderPath = "src/main/java/com/leetcode/daily/" + yearPart + "/" + monthPart + "/";
+        String exampleFile = dayPrefix + "_TwoSum.java";
+
+        System.out.println("📅 今日状态：");
+        System.out.println("  当前 Java 包名 ：" + packageName);
+        System.out.println("  今日日期标识   ：" + dayPrefix);
+        System.out.println("  示例文件名     ：" + exampleFile);
+        System.out.println("  物理保存路径   ：" + folderPath);
         System.out.println();
-        System.out.println("🚀 开始你的算法之旅吧！");
+        System.out.println("🚀 提示：执行 DailyFileGenerator 类即可自动创建今日模板！");
         System.out.println("========================================");
     }
 }
